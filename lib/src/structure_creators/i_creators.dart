@@ -12,6 +12,8 @@ abstract class IDirectoryCreator {
   Directory get dataDir;
 
   Directory get uiDir;
+
+  Directory get l10nDir;
 }
 
 abstract class IFileCreator {

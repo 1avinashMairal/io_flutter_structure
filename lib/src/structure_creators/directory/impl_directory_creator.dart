@@ -8,6 +8,7 @@ class ImplDirectoryCreator implements IDirectoryCreator {
   final _data = 'data';
   final _ui = 'ui';
   final _utils = 'utils';
+  final _l10n = 'l10n';
 
   late final String basePath;
 
@@ -19,6 +20,9 @@ class ImplDirectoryCreator implements IDirectoryCreator {
 
   @override
   Directory get uiDir => Directory('$basePath/$_ui');
+
+  @override
+  Directory get l10nDir => Directory('$basePath/$_l10n');
 
   @override
   Future<bool> createDirectories() async {
@@ -63,6 +67,10 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       // utils directory
       print('creating utils directory...');
       await Directory('$basePath/$_utils').create();
+
+      // l10n directory
+      print('creating l10n directory...');
+      await Directory('$basePath/$_l10n').create();
 
       return true;
     } catch (e, s) {

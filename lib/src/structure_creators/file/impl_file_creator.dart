@@ -44,6 +44,17 @@ class ImplFileCreator implements IFileCreator {
       'configurations',
       content: 'abstract class Configurations {}',
     );
+    await _createFile(
+      directoryCreator.l10nDir.path,
+      'app_en',
+      content:
+          '{   "hello": "Hello {username}","@hello":{"description": "A welcome message","placeholders":{"username":{"type":"String"}}}}',
+    );
+    await _createFile(
+      directoryCreator.l10nDir.path,
+      'app_ja',
+      content: '{"hello":"こんにちは {username}"}',
+    );
   }
 
   Future<void> _createFile(
@@ -52,7 +63,12 @@ class ImplFileCreator implements IFileCreator {
     String? content,
   }) async {
     try {
-      final file = await File('$basePath/$fileName.dart').create();
+      final File file;
+      if (basePath == directoryCreator.l10nDir.path) {
+        file = await File('$basePath/$fileName.arb').create();
+      } else {
+        file = await File('$basePath/$fileName.dart').create();
+      }
 
       if (content != null) {
         final writer = file.openWrite();
