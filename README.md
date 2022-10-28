@@ -4,7 +4,7 @@
 
 ##### 1. Firstly, you should activate dart cli to run it globally:
 
-    dart pub global activate kanza_cli
+    dart pub global activate --source git https://github.com/1avinashMairal/io_flutter_structure.git
  
  After successful activation, you can use it.
 
