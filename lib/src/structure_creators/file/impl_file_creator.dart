@@ -55,6 +55,12 @@ class ImplFileCreator implements IFileCreator {
       'app_ja',
       content: '{"hello":"こんにちは {username}"}',
     );
+    await _createFile(
+      '',
+      'l10n',
+      content:
+          'arb-dir: lib/l10n\ntemplate-arb-file: app_en.arb\noutput-localization-file: app_localizations.dart',
+    );
   }
 
   Future<void> _createFile(
@@ -66,6 +72,8 @@ class ImplFileCreator implements IFileCreator {
       final File file;
       if (basePath == directoryCreator.l10nDir.path) {
         file = await File('$basePath/$fileName.arb').create();
+      } else if (basePath == '') {
+        file = await File('$fileName.yaml').create();
       } else {
         file = await File('$basePath/$fileName.dart').create();
       }
