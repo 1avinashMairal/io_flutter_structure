@@ -1,7 +1,7 @@
 name: io_flutter_cli
 description: A simple command-line application to generate simple folder and file structure for Flutter Applications.
 version: 0.0.1
-homepage:
+homepage: https://github.com/1avinashMairal/io_flutter_structure
 
 environment:
   sdk: '>=2.18.1 <3.0.0'
@@ -10,14 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
   args: ^2.3.1
   http: ^0.13.5
   yaml: ^3.1.1
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
