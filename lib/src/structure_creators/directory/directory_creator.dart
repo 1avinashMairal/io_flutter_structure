@@ -9,6 +9,8 @@ class ImplDirectoryCreator implements IDirectoryCreator {
   final _ui = 'ui';
   final _utils = 'utils';
   final _l10n = 'l10n';
+  final _images = 'images';
+  final _assets = 'images';
 
   late final String basePath;
 
@@ -33,6 +35,7 @@ class ImplDirectoryCreator implements IDirectoryCreator {
         basePath = libDir.absolute.path;
       } else {
         final res = await Directory('lib').create(recursive: true);
+
         basePath = res.absolute.path;
       }
 
@@ -64,13 +67,18 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       await Directory('$absUiPath/$_core').create();
       await Directory('$absUiPath/global').create();
 
-      // utils directory
+      //creating utils directory
       print('creating utils directory...');
       await Directory('$basePath/$_utils').create();
 
-      // l10n directory
+      //creating l10n directory
       print('creating l10n directory...');
       await Directory('$basePath/$_l10n').create();
+
+      //creating images directory
+      print('creating images directory...');
+      await Directory(_images).create();
+      await Directory('$_images/$_assets').create();
 
       return true;
     } catch (e, s) {

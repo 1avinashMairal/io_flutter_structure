@@ -61,7 +61,9 @@ class IoCommandRunner {
 bool welcomeBoard() {
   String content = '''
 +---------------------------------------------------+
-|           Welcome to the iauro flutter CLI!               |
+|                                                   |
+|        Welcome to the iauro flutter CLI!          |
+|                                                   |
 +---------------------------------------------------+
 |        Do you want to continue? [y/n]             |
 +---------------------------------------------------+\n''';
