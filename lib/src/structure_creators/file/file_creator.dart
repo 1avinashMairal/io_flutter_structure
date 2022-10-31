@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import '../i_creators.dart';
@@ -61,6 +63,12 @@ class ImplFileCreator implements IFileCreator {
       content:
           'arb-dir: lib/l10n\ntemplate-arb-file: app_en.arb\noutput-localization-file: app_localizations.dart',
     );
+    await _updateFile(
+      directoryCreator.l10nDir.path,
+      'app_en',
+      content:
+          '{   "hello": "Hello {username}","@hello":{"description": "A welcome message","placeholders":{"username":{"type":"String"}}}}',
+    );
   }
 
   Future<void> _createFile(
@@ -82,6 +90,44 @@ class ImplFileCreator implements IFileCreator {
         final writer = file.openWrite();
         writer.write(content);
         writer.close();
+      }
+    } catch (_) {
+      stderr.write('creating $fileName.dart failed!');
+      exit(2);
+    }
+  }
+
+  Future<void> _updateFile(
+    String basePath,
+    String fileName, {
+    String? content,
+  }) async {
+    log('IN UPDATE FILE::::::::::::::::::::::');
+    try {
+      final file = File('$basePath/$fileName.dart');
+      log('UPDATED FILE::::::::::::::::::::::$file');
+      if (await file.exists()) {
+        if (content != null) {
+          final readLine = file
+              .openRead()
+              .transform(utf8.decoder) // Decode bytes to UTF-8.
+              .transform(const LineSplitter());
+          try {
+            await for (var line in readLine) {
+              print('$line: ${line.length} characters');
+              log('$line: ${line.length} characters');
+            }
+            print('File is now closed.');
+            log('File is now closed.');
+          } catch (e) {
+            print('Error: $e');
+            log('Error: $e');
+          }
+
+          // final writer = file.openWrite();
+          // writer.write(content);
+          // writer.close();
+        }
       }
     } catch (_) {
       stderr.write('creating $fileName.dart failed!');

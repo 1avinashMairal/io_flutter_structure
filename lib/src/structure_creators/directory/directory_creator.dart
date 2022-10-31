@@ -10,7 +10,7 @@ class ImplDirectoryCreator implements IDirectoryCreator {
   final _utils = 'utils';
   final _l10n = 'l10n';
   final _images = 'images';
-  final _assets = 'images';
+  final _assets = 'assets';
 
   late final String basePath;
 
