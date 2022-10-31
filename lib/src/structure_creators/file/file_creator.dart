@@ -67,7 +67,7 @@ class ImplFileCreator implements IFileCreator {
       directoryCreator.l10nDir.path,
       'app_en',
       content:
-          '{   "hello": "Hello {username}","@hello":{"description": "A welcome message","placeholders":{"username":{"type":"String"}}}}',
+          '{\n  "hello": "Hello {username}",\n"@hello":{"description": "A welcome message",\n "placeholders":{"username":{"type":"String"}\n}\n}\n}',
     );
   }
 
