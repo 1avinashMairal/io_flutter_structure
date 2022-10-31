@@ -50,7 +50,7 @@ class ImplFileCreator implements IFileCreator {
       directoryCreator.l10nDir.path,
       'app_en',
       content:
-          '{   "hello": "Hello {username}","@hello":{"description": "A welcome message","placeholders":{"username":{"type":"String"}}}}',
+          '{\n  "hello": "Hello {username}",\n"@hello":{"description": "A welcome message",\n "placeholders":{"username":{"type":"String"}\n}\n}\n}',
     );
     await _createFile(
       directoryCreator.l10nDir.path,
@@ -103,9 +103,11 @@ class ImplFileCreator implements IFileCreator {
     String? content,
   }) async {
     log('IN UPDATE FILE::::::::::::::::::::::');
+    stdout.writeln('IN UPDATE FILE::::::::::::::::::::::');
     try {
       final file = File('$basePath/$fileName.dart');
       log('UPDATED FILE::::::::::::::::::::::$file');
+      stdout.writeln('UPDATED FILE::::::::::::::::::::::$file');
       if (await file.exists()) {
         if (content != null) {
           final readLine = file
@@ -114,13 +116,14 @@ class ImplFileCreator implements IFileCreator {
               .transform(const LineSplitter());
           try {
             await for (var line in readLine) {
+              stdout.writeln('$line: ${line.length} characters');
               print('$line: ${line.length} characters');
               log('$line: ${line.length} characters');
             }
-            print('File is now closed.');
+            stdout.writeln('File is now closed.');
             log('File is now closed.');
           } catch (e) {
-            print('Error: $e');
+            stdout.writeln('Error: $e');
             log('Error: $e');
           }
 
