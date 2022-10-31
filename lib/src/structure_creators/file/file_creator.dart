@@ -102,29 +102,34 @@ class ImplFileCreator implements IFileCreator {
     String fileName, {
     String? content,
   }) async {
-    log('IN UPDATE FILE::::::::::::::::::::::');
     stdout.writeln('IN UPDATE FILE::::::::::::::::::::::');
     try {
       final file = File('$basePath/$fileName.dart');
-      log('UPDATED FILE::::::::::::::::::::::$file');
+      stdout.write('UPDATED FILE::::::::::::::::::::::$file');
       stdout.writeln('UPDATED FILE::::::::::::::::::::::$file');
       if (await file.exists()) {
+        stdout.write('IN FILE EXIST ::::::::::::::::::::::');
+        stdout.writeln('IN FILE EXIST::::::::::::::::::::::');
         if (content != null) {
+          stdout.write('CONTENT NOT NULL ::::::::::::::::::::::');
+          stdout.writeln('CONTENT NOT NULL ::::::::::::::::::::::');
           final readLine = file
               .openRead()
               .transform(utf8.decoder) // Decode bytes to UTF-8.
               .transform(const LineSplitter());
+          stdout.write('AFTER READ FILE ::::::::::::::::::::::');
+          stdout.writeln('AFTER READ FILE ::::::::::::::::::::::');
           try {
             await for (var line in readLine) {
+              stdout.write('IN LOOP TO PRINT FILE ::::::::::::::::::::::');
+              stdout.writeln('AFTER READ FILE ::::::::::::::::::::::');
+              stdout.write('$line: ${line.length} characters');
               stdout.writeln('$line: ${line.length} characters');
-              print('$line: ${line.length} characters');
-              log('$line: ${line.length} characters');
             }
             stdout.writeln('File is now closed.');
-            log('File is now closed.');
           } catch (e) {
-            stdout.writeln('Error: $e');
-            log('Error: $e');
+            stdout.writeln('Error:::::::::::: $e');
+            stdout.write('Error::::::::::::: $e');
           }
 
           // final writer = file.openWrite();
