@@ -50,7 +50,7 @@ class ImplFileCreator implements IFileCreator {
       directoryCreator.l10nDir.path,
       'app_en',
       content:
-          '{\n  "hello": "Hello {username}",\n    "@hello":\n   {\n     "description": "A welcome message",\n     "placeholders":\n     {\n       "username":\n       {\n       "type":"String"\n       }\n     }\n   }\n }',
+          '{\n  "hello": "Hello {username}",\n    "@hello":\n     {\n       "description": "A welcome message",\n       "placeholders":\n       {\n         "username":\n               {\n             "type":"String"\n         }\n       }\n     }\n   }',
     );
     await _createFile(
       directoryCreator.l10nDir.path,
@@ -66,8 +66,7 @@ class ImplFileCreator implements IFileCreator {
     await _updateFile(
       directoryCreator.l10nDir.path,
       'app_en',
-      content:
-          '{\n  "hello": "Hello {username}",\n"@hello":{"description": "A welcome message",\n "placeholders":{"username":{"type":"String"}\n}\n}\n}',
+      content: 'THIS IS UPDATED TEXT',
     );
   }
 
@@ -102,24 +101,25 @@ class ImplFileCreator implements IFileCreator {
     String fileName, {
     String? content,
   }) async {
-    stdout.writeln('IN UPDATE FILE::::::::::::::::::::::');
     try {
       final File file;
-      stdout.write('BEFORE IF::::::::::::::::::::::');
       if (basePath == directoryCreator.l10nDir.path) {
         file = File('$basePath/$fileName.arb');
-        stdout.write('IN IF FILE EXIST ::::::::::::::::::::::');
         if (content != null) {
-          stdout.write('CONTENT NOT NULL ::::::::::::::::::::::');
           final readLine = file
               .openRead()
               .transform(utf8.decoder) // Decode bytes to UTF-8.
               .transform(const LineSplitter());
-          stdout.write('AFTER READ FILE ::::::::::::::::::::::');
           try {
             await for (var line in readLine) {
-              stdout.write('IN LOOP TO PRINT FILE ::::::::::::::::::::::');
-              stdout.write('$line: ${line.length} characters');
+              stdout.write('$line:\n');
+              stdout.write('${line.length} characters\n');
+              if (line.contains("placeholders")) {
+                stdout.write('THIS LINE SATISFY CONDITION::: $line');
+                final writer = file.openWrite();
+                writer.write(content);
+                writer.close();
+              }
             }
             stdout.writeln('File is now closed.');
           } catch (e) {
