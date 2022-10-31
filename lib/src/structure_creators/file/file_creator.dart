@@ -110,6 +110,7 @@ class ImplFileCreator implements IFileCreator {
               .openRead()
               .transform(utf8.decoder) // Decode bytes to UTF-8.
               .transform(const LineSplitter());
+
           try {
             await for (var line in readLine) {
               stdout.write('$line:\n');

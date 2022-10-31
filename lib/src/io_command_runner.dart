@@ -34,6 +34,7 @@ class IoCommandRunner {
 
           if (res) {
             bool isNeedPubUpdate = argResult['get-packages'];
+            argResult['flutter pub add provider'];
 
             print('isNeedPubUpdate: $isNeedPubUpdate');
 
