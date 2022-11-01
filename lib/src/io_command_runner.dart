@@ -34,7 +34,6 @@ class IoCommandRunner {
 
           if (res) {
             bool isNeedPubUpdate = argResult['get-packages'];
-            argResult['flutter pub add provider'];
 
             print('isNeedPubUpdate: $isNeedPubUpdate');
 
@@ -80,6 +79,6 @@ bool welcomeBoard() {
 
 void _errorAndExit([String? command]) {
   stderr.writeln('Command not available!');
-  stderr.writeln('try kanza_cli help for commands.');
+  stderr.writeln('try io_flutter_cli help for commands.');
   exit(2);
 }

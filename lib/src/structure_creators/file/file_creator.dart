@@ -63,11 +63,6 @@ class ImplFileCreator implements IFileCreator {
       content:
           'arb-dir: lib/l10n\ntemplate-arb-file: app_en.arb\noutput-localization-file: app_localizations.dart',
     );
-    await _updateFile(
-      directoryCreator.l10nDir.path,
-      'app_en',
-      content: 'THIS IS UPDATED TEXT',
-    );
   }
 
   Future<void> _createFile(
@@ -89,48 +84,6 @@ class ImplFileCreator implements IFileCreator {
         final writer = file.openWrite();
         writer.write(content);
         writer.close();
-      }
-    } catch (_) {
-      stderr.write('creating $fileName.dart failed!');
-      exit(2);
-    }
-  }
-
-  Future<void> _updateFile(
-    String basePath,
-    String fileName, {
-    String? content,
-  }) async {
-    try {
-      final File file;
-      if (basePath == directoryCreator.l10nDir.path) {
-        file = File('$basePath/$fileName.arb');
-        if (content != null) {
-          final readLine = file
-              .openRead()
-              .transform(utf8.decoder) // Decode bytes to UTF-8.
-              .transform(const LineSplitter());
-
-          try {
-            await for (var line in readLine) {
-              stdout.write('$line:\n');
-              stdout.write('${line.length} characters\n');
-              if (line.contains("placeholders")) {
-                stdout.write('THIS LINE SATISFY CONDITION::: $line');
-                final writer = file.openWrite();
-                writer.write(content);
-                writer.close();
-              }
-            }
-            stdout.writeln('File is now closed.');
-          } catch (e) {
-            stdout.write('Error::::::::::::: $e');
-          }
-
-          // final writer = file.openWrite();
-          // writer.write(content);
-          // writer.close();
-        }
       }
     } catch (_) {
       stderr.write('creating $fileName.dart failed!');
