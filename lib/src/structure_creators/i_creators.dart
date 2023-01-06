@@ -7,13 +7,21 @@ abstract class IIoCreator {
 abstract class IDirectoryCreator {
   Future<bool> createDirectories();
 
-  Directory get blocDir;
-
   Directory get dataDir;
 
-  Directory get uiDir;
-
   Directory get l10nDir;
+
+  Directory get modelDir;
+
+  Directory get repositoryDir;
+
+  Directory get resourcesDir;
+
+  Directory get utilsDir;
+
+  Directory get viewDir;
+
+  Directory get viewModelDir;
 }
 
 abstract class IFileCreator {

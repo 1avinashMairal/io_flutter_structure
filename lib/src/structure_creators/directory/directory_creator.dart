@@ -3,28 +3,47 @@ import 'dart:io';
 import '../i_creators.dart';
 
 class ImplDirectoryCreator implements IDirectoryCreator {
-  final _core = 'core';
-  final _bloc = 'bloc';
   final _data = 'data';
-  final _ui = 'ui';
-  final _utils = 'utils';
+  final _network = 'network';
+  final _response = 'response';
   final _l10n = 'l10n';
+  final _model = 'model';
+  final _repository = 'repository';
+  final _resources = 'resources';
+  final _utils = 'utils';
+  final _view = 'view';
+  final _screens = 'screens';
+  final _widgets = 'widgets';
+  final _viewModel = 'view_model';
+
   final _images = 'images';
   final _assets = 'assets';
 
   late final String basePath;
 
   @override
-  Directory get blocDir => Directory('$basePath/$_bloc');
-
-  @override
   Directory get dataDir => Directory('$basePath/$_data');
 
   @override
-  Directory get uiDir => Directory('$basePath/$_ui');
+  Directory get l10nDir => Directory('$basePath/$_l10n');
 
   @override
-  Directory get l10nDir => Directory('$basePath/$_l10n');
+  Directory get modelDir => Directory('$basePath/$_model');
+
+  @override
+  Directory get repositoryDir => Directory('$basePath/$_repository');
+
+  @override
+  Directory get resourcesDir => Directory('$basePath/$_resources');
+
+  @override
+  Directory get utilsDir => Directory('$basePath/$_utils');
+
+  @override
+  Directory get viewDir => Directory('$basePath/$_view');
+
+  @override
+  Directory get viewModelDir => Directory('$basePath/$_viewModel');
 
   @override
   Future<bool> createDirectories() async {
@@ -39,41 +58,52 @@ class ImplDirectoryCreator implements IDirectoryCreator {
         basePath = res.absolute.path;
       }
 
-      final absBlocPath = blocDir.absolute.path;
       final absDataPath = dataDir.absolute.path;
-      final absUiPath = uiDir.absolute.path;
+      final absL10nPath = l10nDir.absolute.path;
+      final absModelPath = modelDir.absolute.path;
+      final absRepositoryPath = repositoryDir.absolute.path;
+      final absResourcesPath = resourcesDir.absolute.path;
+      final absUtilsPath = utilsDir.absolute.path;
+      final absViewPath = viewDir.absolute.path;
+      final absViewModelPath = viewModelDir.absolute.path;
 
       print('creating directories...\n');
-
-      // bloc directory
-      print('creating bloc directory...');
-      await Directory(absBlocPath).create();
-      await Directory('$absBlocPath/$_core').create();
 
       // data directory
       print('creating data directory...');
       await Directory(absDataPath).create();
-      await Directory('$absDataPath/$_core').create();
-      await Directory('$absDataPath/models').create();
-      await Directory('$absDataPath/repositories').create();
-      await Directory('$absDataPath/contractors').create();
-      await Directory('$absDataPath/data_providers').create();
-
-      // ui directory
-      print('creating ui directory...');
-      await Directory(absUiPath).create();
-      await Directory('$absUiPath/pages').create();
-      await Directory('$absUiPath/dialogs').create();
-      await Directory('$absUiPath/$_core').create();
-      await Directory('$absUiPath/global').create();
-
-      //creating utils directory
-      print('creating utils directory...');
-      await Directory('$basePath/$_utils').create();
+      await Directory('$absDataPath/$_network').create();
+      await Directory('$absDataPath/$_response').create();
 
       //creating l10n directory
       print('creating l10n directory...');
-      await Directory('$basePath/$_l10n').create();
+      await Directory(absL10nPath).create();
+
+      //creating model directory
+      print('creating model directory...');
+      await Directory(absModelPath).create();
+
+      //creating repository directory
+      print('creating repository directory...');
+      await Directory(absRepositoryPath).create();
+
+      //creating resources directory
+      print('creating resources directory...');
+      await Directory(absResourcesPath).create();
+
+      //creating utils directory
+      print('creating utils directory...');
+      await Directory(absUtilsPath).create();
+
+      //creating view directory
+      print('creating view directory...');
+      await Directory(absViewPath).create();
+      await Directory('$absDataPath/$_screens').create();
+      await Directory('$absDataPath/$_widgets').create();
+
+      //creating view_model directory
+      print('creating view_model directory...');
+      await Directory(absViewModelPath).create();
 
       //creating images directory
       print('creating images directory...');
