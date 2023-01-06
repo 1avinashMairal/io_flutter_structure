@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:io_flutter_cli/src/file_content/base_api_services_content.dart';
+
 import '../i_creators.dart';
 
 class ImplFileCreator implements IFileCreator {
@@ -22,7 +24,7 @@ class ImplFileCreator implements IFileCreator {
     await _createFile(
       '${directoryCreator.dataDir.path}/network',
       'base_api_services',
-      content: 'abstract class DataConstants {}',
+      content: BaseApiServiceContent.baseApiServiceContent,
     );
     await _createFile(
       '${directoryCreator.dataDir.path}/network',
