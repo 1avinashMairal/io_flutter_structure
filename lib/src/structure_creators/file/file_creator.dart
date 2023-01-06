@@ -241,8 +241,6 @@ class ImplFileCreator implements IFileCreator {
       'l10n',
       content: L10nContent.l10nContent,
     );
-/////Delete file before create new file
-    await deleteFile();
 
     //////Create main file
     await _createFile(
@@ -275,17 +273,6 @@ class ImplFileCreator implements IFileCreator {
     } catch (_) {
       stderr.write('creating $fileName.dart failed!');
       exit(2);
-    }
-  }
-
-  Future<void> deleteFile() async {
-    try {
-      final libDir = Directory('lib');
-      final file = await File('$libDir/main.dart').delete();
-      await file.delete();
-    } catch (e) {
-      print("Error: $e | File not deleted...");
-      stderr.write('Error: $e | delete main.dart failed!');
     }
   }
 }
