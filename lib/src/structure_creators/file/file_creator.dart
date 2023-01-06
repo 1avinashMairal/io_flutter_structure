@@ -22,10 +22,12 @@ class ImplFileCreator implements IFileCreator {
     await _createFile(
       '${directoryCreator.dataDir.path}/network',
       'base_api_services',
+      content: 'abstract class DataConstants {}',
     );
     await _createFile(
       '${directoryCreator.dataDir.path}/network',
       'network_api_service',
+      content: 'abstract class DataConstants {}',
     );
 
     print('creating files for data/response dir...');

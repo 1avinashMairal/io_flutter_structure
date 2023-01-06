@@ -98,8 +98,8 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       //creating view directory
       print('creating view directory...');
       await Directory(absViewPath).create();
-      await Directory('$absDataPath/$_screens').create();
-      await Directory('$absDataPath/$_widgets').create();
+      await Directory('$absViewPath/$_screens').create();
+      await Directory('$absViewPath/$_widgets').create();
 
       //creating view_model directory
       print('creating view_model directory...');
