@@ -2,9 +2,9 @@ class NetworkApiServiceContent {
   static const String networkApiServiceContent = '''import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:mvvm_app/resources/app_urls.dart';
-import 'package:mvvm_app/data/app_exceptions.dart';
-import 'package:mvvm_app/data/network/base_api_services.dart';
+import '/resources/app_urls.dart';
+import '../app_exceptions.dart';
+import '/data/network/base_api_services.dart';
 
 class NetworkApiService extends BaseApiServices {
   @override
