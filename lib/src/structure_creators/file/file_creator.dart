@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:io_flutter_cli/src/file_content/app_main.dart';
 import 'package:io_flutter_cli/src/file_content/data/api_response.dart';
 import 'package:io_flutter_cli/src/file_content/localization/app_en.dart';
 import 'package:io_flutter_cli/src/file_content/data/app_exceptions.dart';
@@ -240,6 +241,15 @@ class ImplFileCreator implements IFileCreator {
       'l10n',
       content: L10nContent.l10nContent,
     );
+/////Delete file before create new file
+    await deleteFile();
+
+    //////Create main file
+    await _createFile(
+      '',
+      'main',
+      content: AppMainContent.appMainContent,
+    );
   }
 
   Future<void> _createFile(
@@ -265,6 +275,16 @@ class ImplFileCreator implements IFileCreator {
     } catch (_) {
       stderr.write('creating $fileName.dart failed!');
       exit(2);
+    }
+  }
+
+  Future<void> deleteFile() async {
+    try {
+      final file = await File('main.dart').delete();
+      await file.delete();
+    } catch (e) {
+      print("Error: $e | File not deleted...");
+      stderr.write('Error: $e | delete main.dart failed!');
     }
   }
 }
