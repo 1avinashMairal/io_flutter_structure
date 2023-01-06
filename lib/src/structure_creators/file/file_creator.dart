@@ -246,7 +246,7 @@ class ImplFileCreator implements IFileCreator {
 
     //////Create main file
     await _createFile(
-      '',
+      'lib',
       'main',
       content: AppMainContent.appMainContent,
     );
@@ -280,7 +280,8 @@ class ImplFileCreator implements IFileCreator {
 
   Future<void> deleteFile() async {
     try {
-      final file = await File('main.dart').delete();
+      final libDir = Directory('lib');
+      final file = await File('$libDir/main.dart').delete();
       await file.delete();
     } catch (e) {
       print("Error: $e | File not deleted...");
