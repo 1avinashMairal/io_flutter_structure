@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:io_flutter_cli/src/file_content/app_exceptions.dart';
 import 'package:io_flutter_cli/src/file_content/base_api_services_content.dart';
+import 'package:io_flutter_cli/src/file_content/network_api_service.dart';
 
 import '../i_creators.dart';
 
@@ -17,6 +19,7 @@ class ImplFileCreator implements IFileCreator {
     await _createFile(
       directoryCreator.dataDir.path,
       'app_exceptions',
+      content: AppExceptionsContent.appExceptionsContent,
     );
 
     print('creating files for data/network dir...');
@@ -29,7 +32,7 @@ class ImplFileCreator implements IFileCreator {
     await _createFile(
       '${directoryCreator.dataDir.path}/network',
       'network_api_service',
-      content: 'abstract class DataConstants {}',
+      content: NetworkApiServiceContent.networkApiServiceContent,
     );
 
     print('creating files for data/response dir...');
