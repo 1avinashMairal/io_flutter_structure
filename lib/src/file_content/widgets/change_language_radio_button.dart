@@ -2,8 +2,7 @@ class ChangeLangRadioBtnContent {
   static const String changeLangRadioBtnContent =
       '''import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '/resources/language_locale.dart';
+import '../../resources/app_language.dart';
 import '/view_model/language_view_model.dart';
 
 class ChangeLanguageRadioButtonWidget extends StatelessWidget {
@@ -14,16 +13,16 @@ class ChangeLanguageRadioButtonWidget extends StatelessWidget {
     final languageProvider = Provider.of<LanguageViewModel>(context);
     return Column(
       children: [
-        RadioListTile<Locale>(
-          title: Text(AppLocalizations.of(context)!.english),
-          value: LanguageLocale.english,
-          groupValue: languageProvider.selectedLocale,
+        RadioListTile<AppLanguage>(
+          title: Text(languageProvider.appStrings.english),
+          value: AppLanguage.ENGLISH,
+          groupValue: languageProvider.selectedLanguage,
           onChanged: languageProvider.setLocale,
         ),
-        RadioListTile<Locale>(
-          title: Text(AppLocalizations.of(context)!.hindi),
-          value: LanguageLocale.hindi,
-          groupValue: languageProvider.selectedLocale,
+        RadioListTile<AppLanguage>(
+          title: Text(languageProvider.appStrings.marathi),
+          value: AppLanguage.MARATHI,
+          groupValue: languageProvider.selectedLanguage,
           onChanged: languageProvider.setLocale,
         ),
       ],

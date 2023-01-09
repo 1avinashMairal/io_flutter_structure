@@ -6,7 +6,7 @@ class ImplDirectoryCreator implements IDirectoryCreator {
   final _data = 'data';
   final _network = 'network';
   final _response = 'response';
-  final _l10n = 'l10n';
+  //final _l10n = 'l10n';
   final _model = 'model';
   final _repository = 'repository';
   final _resources = 'resources';
@@ -23,9 +23,6 @@ class ImplDirectoryCreator implements IDirectoryCreator {
 
   @override
   Directory get dataDir => Directory('$basePath/$_data');
-
-  @override
-  Directory get l10nDir => Directory('$basePath/$_l10n');
 
   @override
   Directory get modelDir => Directory('$basePath/$_model');
@@ -59,7 +56,6 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       }
 
       final absDataPath = dataDir.absolute.path;
-      final absL10nPath = l10nDir.absolute.path;
       final absModelPath = modelDir.absolute.path;
       final absRepositoryPath = repositoryDir.absolute.path;
       final absResourcesPath = resourcesDir.absolute.path;
@@ -74,10 +70,6 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       await Directory(absDataPath).create();
       await Directory('$absDataPath/$_network').create();
       await Directory('$absDataPath/$_response').create();
-
-      //creating l10n directory
-      print('creating l10n directory...');
-      await Directory(absL10nPath).create();
 
       //creating model directory
       print('creating model directory...');

@@ -2,8 +2,6 @@ class AppMainContent {
   static const String appMainContent =
       '''import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import '/view/screens/auth_navigator_screen.dart';
 import '/resources/app_theme.dart';
 import '/view/screens/home_screen.dart';
@@ -39,22 +37,15 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AuthViewModel>(builder: (context, auth, _) {
         final themeProvider = Provider.of<ThemeViewModel>(context);
-        final languageProvider =
-            Provider.of<LanguageViewModel>(context, listen: true);
+        // final languageProvider =
+        //     Provider.of<LanguageViewModel>(context, listen: true);
         return MaterialApp(
           title: 'My Application',
           debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
           supportedLocales: const [
             Locale('en', 'US'), // English, no country code
             Locale('hi', 'IN'), // Hindi,no country code
           ],
-          locale: languageProvider.selectedLocale,
           themeMode: themeProvider.themeMode,
           theme: AppThemes.lightTheme,
           darkTheme: AppThemes.darkTheme,

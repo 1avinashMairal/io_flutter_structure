@@ -1,18 +1,15 @@
 import 'dart:io';
 import 'package:io_flutter_cli/src/file_content/app_main.dart';
 import 'package:io_flutter_cli/src/file_content/data/api_response.dart';
-import 'package:io_flutter_cli/src/file_content/localization/app_en.dart';
 import 'package:io_flutter_cli/src/file_content/data/app_exceptions.dart';
-import 'package:io_flutter_cli/src/file_content/localization/app_hi.dart';
 import 'package:io_flutter_cli/src/file_content/repository/auth_repository.dart';
 import 'package:io_flutter_cli/src/file_content/data/base_api_services_content.dart';
-import 'package:io_flutter_cli/src/file_content/localization/l10n.dart';
 import 'package:io_flutter_cli/src/file_content/data/network_api_service.dart';
 import 'package:io_flutter_cli/src/file_content/resourse/app_theme.dart';
 import 'package:io_flutter_cli/src/file_content/resourse/app_urls.dart';
 import 'package:io_flutter_cli/src/file_content/resourse/colors.dart';
 import 'package:io_flutter_cli/src/file_content/resourse/keyclock_vars.dart';
-import 'package:io_flutter_cli/src/file_content/resourse/language_locale.dart';
+import 'package:io_flutter_cli/src/file_content/resourse/app_language.dart';
 import 'package:io_flutter_cli/src/file_content/utils/constant.dart';
 import 'package:io_flutter_cli/src/file_content/utils/share_preference.dart';
 import 'package:io_flutter_cli/src/file_content/utils/share_singleton.dart';
@@ -125,8 +122,23 @@ class ImplFileCreator implements IFileCreator {
 
     await _createFile(
       directoryCreator.resourcesDir.path,
-      'language_locale',
+      'app_language',
       content: LanguageLocaleContent.languageLocaleContent,
+    );
+    await _createFile(
+      directoryCreator.viewModelDir.path,
+      'language_strings',
+      content: UserViewModelContent.userViewModelContent,
+    );
+    await _createFile(
+      directoryCreator.viewModelDir.path,
+      'primary_lang_strings',
+      content: UserViewModelContent.userViewModelContent,
+    );
+    await _createFile(
+      directoryCreator.viewModelDir.path,
+      'secondary_lang_strings',
+      content: UserViewModelContent.userViewModelContent,
     );
 
     print('creating files for utils dir...');
@@ -222,26 +234,8 @@ class ImplFileCreator implements IFileCreator {
       'user_view_model',
       content: UserViewModelContent.userViewModelContent,
     );
+
     // ======================
-
-    print('creating files for localization l10n...');
-
-    await _createFile(
-      directoryCreator.l10nDir.path,
-      'app_en',
-      content: AppEnglishContent.appEnglishContent,
-    );
-    await _createFile(
-      directoryCreator.l10nDir.path,
-      'app_hi',
-      content: AppHindiContent.appHindiContent,
-    );
-    await _createFile(
-      '',
-      'l10n',
-      content: L10nContent.l10nContent,
-    );
-
     //////Create main file
     await _createFile(
       'lib',
@@ -257,9 +251,7 @@ class ImplFileCreator implements IFileCreator {
   }) async {
     try {
       final File file;
-      if (basePath == directoryCreator.l10nDir.path) {
-        file = await File('$basePath/$fileName.arb').create();
-      } else if (basePath == '') {
+      if (basePath == '') {
         file = await File('$fileName.yaml').create();
       } else {
         file = await File('$basePath/$fileName.dart').create();
