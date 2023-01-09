@@ -7,5 +7,6 @@ class LanguageStringsContent {
   abstract String language;
   abstract String english;
   abstract String marathi;
+  abstract String authenticatMessage;
 }''';
 }

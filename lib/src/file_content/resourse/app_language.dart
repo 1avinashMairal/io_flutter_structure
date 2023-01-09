@@ -1,4 +1,4 @@
-class LanguageLocaleContent {
-  static const String languageLocaleContent =
+class AppLanguageContent {
+  static const String appLanguageContent =
       '''enum AppLanguage { ENGLISH, MARATHI }''';
 }

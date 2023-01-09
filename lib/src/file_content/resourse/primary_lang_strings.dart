@@ -23,5 +23,9 @@ class PrimaryAbstractStrings implements AppStrings {
 
   @override
   String marathi = "Marathi";
+
+  @override
+  String authenticatMessage = "Redirecting to authentication please wait...";
+
 }''';
 }

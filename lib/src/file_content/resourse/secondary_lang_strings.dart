@@ -23,6 +23,10 @@ class SecondaryAbstractStrings implements AppStrings {
 
   @override
   String marathi = "मराठी";
+
+  @override
+  String authenticatMessage =
+      "प्रमाणीकरणाकडे पुनर्निर्देशित करत आहे कृपया प्रतीक्षा करा...";
 }
 ''';
 }
