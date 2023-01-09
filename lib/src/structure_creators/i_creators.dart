@@ -9,8 +9,6 @@ abstract class IDirectoryCreator {
 
   Directory get dataDir;
 
-  Directory get l10nDir;
-
   Directory get modelDir;
 
   Directory get repositoryDir;
