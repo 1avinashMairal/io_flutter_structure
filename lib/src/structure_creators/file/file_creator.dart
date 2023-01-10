@@ -246,8 +246,8 @@ class ImplFileCreator implements IFileCreator {
     );
 
     await _createFile(
-      'assets',
-      'html',
+      directoryCreator.assetsDir.path,
+      'login',
       content: LoginHtmlContent.loginHtmlContent,
     );
 

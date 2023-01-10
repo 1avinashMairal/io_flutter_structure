@@ -43,6 +43,9 @@ class ImplDirectoryCreator implements IDirectoryCreator {
   Directory get viewModelDir => Directory('$basePath/$_viewModel');
 
   @override
+  Directory get assetsDir => Directory(_assets);
+
+  @override
   Future<bool> createDirectories() async {
     try {
       final libDir = Directory('lib');
@@ -62,6 +65,7 @@ class ImplDirectoryCreator implements IDirectoryCreator {
       final absUtilsPath = utilsDir.absolute.path;
       final absViewPath = viewDir.absolute.path;
       final absViewModelPath = viewModelDir.absolute.path;
+      final absAssetsPath = assetsDir.absolute.path;
 
       print('creating directories...\n');
 
@@ -99,8 +103,8 @@ class ImplDirectoryCreator implements IDirectoryCreator {
 
       //creating images directory
       print('creating images directory...');
-      await Directory(_assets).create();
-      await Directory('$_assets/$_images').create();
+      await Directory(absAssetsPath).create();
+      await Directory('$absAssetsPath/$_images').create();
 
       return true;
     } catch (e, s) {

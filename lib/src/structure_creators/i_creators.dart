@@ -20,6 +20,8 @@ abstract class IDirectoryCreator {
   Directory get viewDir;
 
   Directory get viewModelDir;
+
+  Directory get assetsDir;
 }
 
 abstract class IFileCreator {
