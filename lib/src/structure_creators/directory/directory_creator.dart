@@ -99,8 +99,8 @@ class ImplDirectoryCreator implements IDirectoryCreator {
 
       //creating images directory
       print('creating images directory...');
-      await Directory(_images).create();
-      await Directory('$_images/$_assets').create();
+      await Directory(_assets).create();
+      await Directory('$_assets/$_images').create();
 
       return true;
     } catch (e, s) {

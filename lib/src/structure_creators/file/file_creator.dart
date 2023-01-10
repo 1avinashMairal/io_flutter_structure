@@ -246,8 +246,8 @@ class ImplFileCreator implements IFileCreator {
     );
 
     await _createFile(
-      'html',
       'assets',
+      'html',
       content: LoginHtmlContent.loginHtmlContent,
     );
 
@@ -269,7 +269,7 @@ class ImplFileCreator implements IFileCreator {
       final File file;
       if (basePath == '') {
         file = await File('$fileName.yaml').create();
-      } else if (basePath == 'html') {
+      } else if (basePath == 'assets') {
         file = await File('$fileName.html').create();
       } else {
         file = await File('$basePath/$fileName.dart').create();
