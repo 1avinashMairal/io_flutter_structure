@@ -37,8 +37,6 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AuthViewModel>(builder: (context, auth, _) {
         final themeProvider = Provider.of<ThemeViewModel>(context);
-        // final languageProvider =
-        //     Provider.of<LanguageViewModel>(context, listen: true);
         return MaterialApp(
           title: 'My Application',
           debugShowCheckedModeBanner: false,

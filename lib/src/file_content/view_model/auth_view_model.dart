@@ -31,18 +31,7 @@ class AuthViewModel with ChangeNotifier {
     return null;
   }
 
-  // Future<void> loginApi(BuildContext context) async {
-  //   _authRepo.loginApi().then((isLoginSuccess) {
-  //     if (isLoginSuccess) {
-  //       _token = SharedSingleton.shared.accessToken;
-  //       notifyListeners();
-  //     }
-  //   }).onError((error, stackTrace) {
-  //     Utils.showErrorMessageFlushBar(error.toString(), context);
-  //   });
-  // }
-
-  Future<void> loginApiNew(BuildContext context) async {
+  Future<void> loginApi(BuildContext context) async {
     _authRepo.authenticateWithKeycloak(context).then((isLoginSuccess) {
       if (isLoginSuccess) {
         _token = SharedSingleton.shared.accessToken;

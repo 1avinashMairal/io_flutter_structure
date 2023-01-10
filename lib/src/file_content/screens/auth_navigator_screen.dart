@@ -26,11 +26,8 @@ class _AuthNavigatiorScreenState extends State<AuthNavigatiorScreen> {
   }
 
   Future<void> login() async {
-    // Future.delayed(Duration.zero, () async {
-    //   Provider.of<AuthViewModel>(context, listen: false).loginApi(context);
-    // });
     Future.delayed(Duration.zero, () async {
-      Provider.of<AuthViewModel>(context, listen: false).loginApiNew(context);
+      Provider.of<AuthViewModel>(context, listen: false).loginApi(context);
     });
   }
 
