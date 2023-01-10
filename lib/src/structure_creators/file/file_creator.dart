@@ -270,7 +270,7 @@ class ImplFileCreator implements IFileCreator {
       if (basePath == '') {
         file = await File('$fileName.yaml').create();
       } else if (basePath == 'assets') {
-        file = await File('$fileName.html').create();
+        file = await File('$basePath/$fileName.html').create();
       } else {
         file = await File('$basePath/$fileName.dart').create();
       }
