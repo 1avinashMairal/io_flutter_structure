@@ -16,4 +16,4 @@
     
 And it will generate the following structure:
 
-![structure](https://github.com/thisisyusub/kanza-cli/blob/master/screenshoots/structure.png)
+![image](https://user-images.githubusercontent.com/106060767/211762175-ceef353d-b152-4dc8-976e-186f445a3a03.png)
