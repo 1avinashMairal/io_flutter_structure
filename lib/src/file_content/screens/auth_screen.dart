@@ -49,7 +49,6 @@ class _KeyklockAuthScreenState extends State<KeyklockAuthScreen> {
           body: Stack(
             children: <Widget>[
               WebViewPlus(
-                // serverPort: 5353,
                 javascriptChannels: {
                   JavascriptChannel(
                       name: 'MessageToFlutter',
