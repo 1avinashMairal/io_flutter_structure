@@ -22,11 +22,55 @@ class NetworkApiService extends BaseApiServices {
   }
 
   @override
-  Future<dynamic> getPostApiResponse(String url, dynamic data) async {
+  Future<dynamic> getPostApiResponse(String url, dynamic body) async {
     dynamic responseJson;
     try {
       final response = await http
-          .post(Uri.parse(AppUrl.baseUrl + url), body: data)
+          .post(Uri.parse(AppUrl.baseUrl + url), body: body)
+          .timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+    return responseJson;
+  }
+
+  @override
+  Future<dynamic> getPutApiResponse(String url, dynamic body) async {
+    dynamic responseJson;
+    try {
+      final response = await http
+          .put(Uri.parse(AppUrl.baseUrl + url), body: body)
+          .timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+    return responseJson;
+  }
+
+  @override
+  Future<dynamic> getPatchApiResponse(String url, dynamic body) async {
+    dynamic responseJson;
+    try {
+      final response = await http
+          .patch(Uri.parse(AppUrl.baseUrl + url), body: body)
+          .timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+    return responseJson;
+  }
+
+  @override
+  Future<dynamic> getDeleteApiResponse(String url) async {
+    dynamic responseJson;
+    try {
+      final response = await http
+          .delete(
+            Uri.parse(AppUrl.baseUrl + url),
+          )
           .timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
